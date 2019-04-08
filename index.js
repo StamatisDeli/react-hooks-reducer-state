@@ -5,6 +5,8 @@ import App from './App'
 import './style.css';
 
 render(
-  <App />, 
+  <Store>
+    <App />
+  </Store>, 
   document.getElementById('root')
 );
