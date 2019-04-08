@@ -6,7 +6,7 @@ const Header = () =>{
 
   return (
     <div>
-      <h3>{state.isAuth?'User Singned In': 'No User'}</h3>
+      <h3>{state.isAuth?'User Signed In': 'No User'}</h3>
     </div>
   )
 }
