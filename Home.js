@@ -1,7 +1,11 @@
 import React, {useContext} from 'react';
 import {StoreContext} from './store';
-
-const Fruits = () =>{
+import { fetchDataAction } from "./Actions";
+import Episodes from "./Episodes";
+// const Episodes = React.lazy(() => import("./Episodes"));
+// something wrong with loading images
+// I still am not sure 'props' is necessary
+const Fruits = (props) =>{
   const [state, dispatch] = useContext(StoreContext)
 
   const addBanana = ()=>{
@@ -12,7 +16,21 @@ const Fruits = () =>{
     dispatch({type:'ADD_VEGETABLE', payload: 'brocoli'})
     console.log(state)
   }
-
+  // it works!
+  React.useEffect(() => {
+    console.log("state:", state)
+    }, [state]
+  );
+  // fetching data from db
+  React.useEffect(() => {
+    state.episodes.length === 0 && fetchDataAction(dispatch);
+    },[state],
+    console.log(state.episodes)
+  );
+  const props = {
+    episodes: state.episodes,
+    state: { state, dispatch }
+  };
   return (
     <main>
     <h1>Fruits</h1>
@@ -32,11 +50,9 @@ const Fruits = () =>{
         </button>
         {state.vegetables&&state.vegetables.map((veg, i)=><li key={i+2}>{veg}</li>)}
       </div>
+      <Episodes {...props}/>
     </main>
   )
 }
 
 export default Fruits;
-
-//{state.fruits.map(fruit=><li>{fruit}</li>)}
-//{state.vegetables.map(veg=><li>{veg}</li>)}

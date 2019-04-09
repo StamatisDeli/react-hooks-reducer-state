@@ -5,7 +5,8 @@ export const StoreContext = createContext({})
 const initialState = {
   fruits:[], 
   vegetables:[],
-  isAuth: false
+  isAuth: false,
+  episodes: []
 }
 
 function reducer (state=initialState, action){
@@ -20,17 +21,28 @@ function reducer (state=initialState, action){
   // Write an action in separate module ./actions.js
   case 'MIX_FRUIT':
     return mixFruit(state, action);
+  // Testing data fetch
+  case "FETCH_DATA":
+  return { ...state, episodes: action.payload };
+  
   default: return state;
   }
 }
 
-const Store = ({children}) => {
+const Store = (props) => {
   const [state, dispatch] = useReducer(reducer, initialState)
   return (
     <StoreContext.Provider value={[state, dispatch]}>
-      {children}
+      {props.children}
     </StoreContext.Provider>
   )
 }
-
+// const Store = ({children}) => {
+//   const [state, dispatch] = useReducer(reducer, initialState)
+//   return (
+//     <StoreContext.Provider value={[state, dispatch]}>
+//       {children}
+//     </StoreContext.Provider>
+//   )
+// }
 export default Store
