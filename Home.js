@@ -3,7 +3,7 @@ import {StoreContext} from './store';
 import { fetchDataAction } from "./Actions";
 import Episodes from "./Episodes";
 // const Episodes = React.lazy(() => import("./Episodes"));
-// something wrong with loading images
+// something wrong with loading images cors problem
 // I still am not sure 'props' is necessary
 const Fruits = (props) =>{
   const [state, dispatch] = useContext(StoreContext)
@@ -27,10 +27,12 @@ const Fruits = (props) =>{
     },[state],
     console.log(state.episodes)
   );
+
   const props = {
     episodes: state.episodes,
     state: { state, dispatch }
   };
+
   return (
     <main>
     <h1>Fruits</h1>
@@ -50,6 +52,7 @@ const Fruits = (props) =>{
         </button>
         {state.vegetables&&state.vegetables.map((veg, i)=><li key={i+2}>{veg}</li>)}
       </div>
+      <br></br>
       <Episodes {...props}/>
     </main>
   )
