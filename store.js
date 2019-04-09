@@ -8,19 +8,19 @@ const initialState = {
   isAuth: false
 }
 
-function reducer (state, action){
+function reducer (state=initialState, action){
   switch(action.type){
   case 'ADD_FRUIT':
-    return { fruits: [...state.fruits, action.payload] };
+    return { ...state, fruits: [...state.fruits, action.payload] };
   case 'ADD_VEGETABLE':
-    return { vegetables: [...state.vegetables, action.payload] };
+    return { ...state,  vegetables: [...state.vegetables, action.payload] };
   case 'SET_AUTH':
     return { ...state, isAuth: !state.isAuth };
   // TODO:
   // Write an action in separate module ./actions.js
   case 'MIX_FRUIT':
     return mixFruit(state, action);
-  default: throw new Error ('Action type must be defined')
+  default: return state;
   }
 }
 
