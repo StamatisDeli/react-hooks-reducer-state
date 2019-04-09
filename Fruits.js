@@ -5,7 +5,7 @@ const Fruits = () =>{
   const [state, dispatch] = useContext(StoreContext)
 
   return (
-    <div>
+    <main>
     <h1>Fruits</h1>
       <button 
         onClick={()=>dispatch({type:'ADD_FRUIT', payload: 'banana'})}
@@ -13,7 +13,7 @@ const Fruits = () =>{
         Add Banana
       </button>
       {state.fruits.map(fruit=><li>{fruit}</li>)}
-    </div>
+    </main>
   )
 }
 
