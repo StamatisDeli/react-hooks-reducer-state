@@ -3,9 +3,6 @@ import {StoreContext} from './store';
 import { Link } from "react-router-dom";
 import { Switch, Route } from "react-router-dom";
 
-import Fruits from "./Fruits"
-import Auth from "./Auth"
-
 const Header = () =>{
   const [state, dispatch] = useContext(StoreContext)
 

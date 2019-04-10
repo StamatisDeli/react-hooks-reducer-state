@@ -2,7 +2,7 @@ import React from "react";
 
 const Episodes = (props)=> {
   const { episodes, state } = props;
-  console.log(episodes.map(ep=>ep.image.medium))
+
   return episodes.map(episode => {
     return (
       <section key={episode.id} className="episode-box">
